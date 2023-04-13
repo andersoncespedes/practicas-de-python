@@ -41,7 +41,10 @@ campers = {
         }
     }
 }
+
 #MENU DE ESTUDIANTES
+
+
 def menu(param, num):
     os.system('clear')
     arr = [" CREAR GRUPO "+param +" CON CAMPERS Y SUS DATOS PERSONALES", 
