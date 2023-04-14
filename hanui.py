@@ -8,4 +8,10 @@ def hanoi(p1, p3, p2, n):
         hanoi(p2,p3,p1,n-1)
     else:
         print( p1 + "----->"+ p3)
-hanoi("a", "c", "b",5)
+def honor(a = 1):
+    print(a)
+def holor(a,b,**c):
+    print(c)
+honor(4)
+holor(4,2,4,5,6,7,8,9)
+

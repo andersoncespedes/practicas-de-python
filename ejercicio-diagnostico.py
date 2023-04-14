@@ -1,50 +1,29 @@
 import os
 import time
+import datetime
+date = datetime.datetime.now()
+trainers = {}
 campers = {
-    "basico": {
-        "trainers":{
-            0:{
-                "nombre":"duvall"
-            }
-        },
+    "basico": {},
+    "intermedio":{
         0:{
             "nombre":"anderson",
             "mes":"abril",
             "grupo": "e4",
-            "edad":19
+            "edad":2003
         }
-    },
-    "intermedio":{
-        "trainers":{
-                0:{
-                    "nombre":"duvall"
-                }
-            },
-        0:{
-            "nombre":"christian",
-            "mes":"mayo",
-            "grupo": "e12",
-            "edad":31
-        }
+        
     },
     "avanzado":{
-        "trainers":{
-                0:{
-                    "nombre":"duvall"
-                }
-            },
          0:{
             "nombre":"jhoan",
             "mes":"marxo",
             "grupo": "e20",
-            "edad":30
+            "edad":1999
         }
     }
 }
-
 #MENU DE ESTUDIANTES
-
-
 def menu(param, num):
     os.system('clear')
     arr = [" CREAR GRUPO "+param +" CON CAMPERS Y SUS DATOS PERSONALES", 
@@ -77,8 +56,7 @@ opc = ""
 def listaEst(cat):
     print('''NOMBRE | MES | GRUPO | EDAD''')
     for x in campers[cat]:
-        if type(x) is int:
-            print(campers[cat][x]["nombre"], " | " , campers[cat][x]["mes"], " | "  ,campers[cat][x]["grupo"], " | " ,str(campers[cat][x]["edad"]) )
+        print(campers[cat][x]["nombre"], " | " , campers[cat][x]["mes"], " | "  ,campers[cat][x]["grupo"], " | " ,str(date.year - campers[cat][x]["edad"]) )
     time.sleep(3)
 #FUNCION DE GUARDADO DE ESTUDIANTES
 def guardado(param):
@@ -101,10 +79,9 @@ def guardTrain(param):
     }
 #GENERADOR DE ID
 def generarId(cat, pas):
-    if pas == "trainers":
-        return (len(campers[cat][pas].keys()) - 1) + 1
-    nuevaId = ((len(campers[cat].keys()) - 1) + 1) - 1
+    nuevaId = ((len(campers[cat].keys()) - 1) + 1) - 1 if len(campers[cat].keys()) > 0 else 0
     return nuevaId
+
 #ACTUALIZACION DE ESTUDIANTES
 def guardar(camper, cat):
     id = generarId(cat, "")
@@ -114,6 +91,19 @@ def guardar(camper, cat):
         "grupo": camper[2],
         "edad":camper[3]
     } 
+def duplicados(param):
+    for i in campers[param]:
+        if type(i) is int:
+            dupli = {"nombre": campers[param][i]["nombre"]}
+            if campers[param][i]["nombre"] in dupli["nombre"]:
+                print("hay duplicados")
+def mayorMenor(param):
+    for i in campers[param]:
+        print(campers[param][i]["nombre"], 
+                campers[param][i]["mes"], 
+                campers[param][i]["grupo"], 
+                "Mayor De Edad" if (date.year - campers[param][i]["edad"]) > 18 else "Menor de edad")
+    time.sleep(3)
 #EJECUTADOR DEL PROGRAMA
 while opc != "0":
     mainMenu()
@@ -129,6 +119,8 @@ while opc != "0":
                 guardTrain("basico")
             elif opcB == "4":
                 listaEst("basico")
+            elif opcB == "7":
+                mayorMenor("basico")
     if opc == "2":
         opcB = ""
         while opcB != "0":
@@ -136,9 +128,10 @@ while opc != "0":
             opcB = input()
             if opcB== "1":
                 guardado("intermedio")
-
             elif opcB == "4":
                 listaEst("intermedio")
+            elif opcB == "7":
+                mayorMenor("intermedio")
     if opc == "3":
         opcB = ""
         while opcB != "0":
@@ -148,3 +141,5 @@ while opc != "0":
                 guardado("avanzado")
             elif opcB == "4":
                 listaEst("avanzado")
+            elif opcB == "7":
+                mayorMenor("avanzado")
