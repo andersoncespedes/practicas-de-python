@@ -1,26 +1,23 @@
 import random as ra
-arr = [[ra.randint(100,1000) for x in range(4)] for fila in range(4)]
+arr = [[ra.randint(100,1000) for x in range(3)] for fila in range(3)]
 columna = []
 diagonal = []
 secDiagonal = []
 yUlt = len(arr) - 1
+xUlt = len(arr) - 1
+x= 0
 for y in range(len(arr)):
     print(str(arr[y]))
-    xUlt = len(arr) - 1
-    for x in range(len(arr[y])):    
-        if x == 0:
-            columna.append(arr[y][x])
-        if x == y:
-            diagonal.append(arr[y][x])
-        if yUlt == xUlt:
-            secDiagonal.append(arr[yUlt][xUlt])
-        xUlt -=1
+    columna.append(arr[y][0])
+    diagonal.append(arr[y][x])
+    secDiagonal.append(arr[y][xUlt])
     yUlt-=1
-
+    xUlt-=1
+    x+=1
 print("primera fila:", arr[0])
 print("primera columna:",columna)
-print("diagonal", diagonal)
-print("segundo diagonal", secDiagonal)
+print("diagonal Izquierdo:", diagonal)
+print("diagonal Derecho:", secDiagonal)
 
 
 
