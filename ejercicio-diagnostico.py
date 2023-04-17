@@ -4,10 +4,23 @@ import datetime
 date = datetime.datetime.now()
 trainers = {}
 campers = {
-    "basico": {},
+    "basico": {
+    0:{
+            "nombre":"anderson",
+            "mes":"abril",
+            "grupo": "e4",
+            "edad":2003
+        }
+    },
     "intermedio":{
         0:{
-            "nombre":"anderson",
+            "nombre":"jhoan",
+            "mes":"abril",
+            "grupo": "e4",
+            "edad":2003
+        },
+        1:{
+            "nombre":"chris",
             "mes":"abril",
             "grupo": "e4",
             "edad":2003
@@ -16,10 +29,16 @@ campers = {
     },
     "avanzado":{
          0:{
-            "nombre":"jhoan",
+            "nombre":"anderson",
             "mes":"marxo",
             "grupo": "e20",
             "edad":1999
+        },
+        1:{
+            "nombre":"chris",
+            "mes":"abril",
+            "grupo": "e4",
+            "edad":2003
         }
     }
 }
@@ -91,12 +110,21 @@ def guardar(camper, cat):
         "grupo": camper[2],
         "edad":camper[3]
     } 
-def duplicados(param):
+'''def duplicados(param):
+    busqueda = [y for y in campers if y != param ]
+    x = 2
+    arr = []
     for i in campers[param]:
-        if type(i) is int:
-            dupli = {"nombre": campers[param][i]["nombre"]}
-            if campers[param][i]["nombre"] in dupli["nombre"]:
-                print("hay duplicados")
+        nombre = campers[param][i]["nombre"]
+        for j in range(x):
+            for y in campers[busqueda[j]]:
+                if campers[busqueda[j]][y]["nombre"] == nombre:
+                    arr.append(campers[busqueda[j]][y]["nombre"])'''
+def duplicados(param):
+    
+    print(arr)
+duplicados("avanzado")
+time.sleep(4)
 def mayorMenor(param):
     for i in campers[param]:
         print(campers[param][i]["nombre"], 
