@@ -121,7 +121,6 @@ def guardar(camper, cat):
                 if campers[busqueda[j]][y]["nombre"] == nombre:
                     arr.append(campers[busqueda[j]][y]["nombre"])'''
 def duplicados(param):
-    
     print(arr)
 duplicados("avanzado")
 time.sleep(4)

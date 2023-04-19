@@ -17,8 +17,7 @@ cliente = {
     
 prod = [str(x) +"."+ articulos[x]["prod"] + " " + str(articulos[x]["valor"]) + "\n" for x in articulos]
 opc = ""
-
-while opc != "0":
+while opc != "S":
     os.system("clear")
     print("".join( prod ))
     print("Seleccione un producto")
@@ -36,7 +35,7 @@ while opc != "0":
         print("error")
         time.sleep(2)
         continue
-    opc = input("desea continuar?")
+    opc = input("desea continuar S/N?")
 os.system("clear")
 print('''Articulo | Cantidad | Valor''')
 for i in cliente:
