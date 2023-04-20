@@ -4,45 +4,49 @@ añadir el teléfono de un nuevo cliente y 4. eliminar el teléfono de un client
 en el archivo de texto Directorio.txt donde el nombre del cliente y su teléfono deben aparecer separados por comas y cada cliente en una línea distinta.'''
 import io
 import os
-opc = ""
+import time
+opc1 = ""
 def menu():
-    print("1.Consultar directorio\n2.Añadir el telefono\n3.Eliminar el telefono")
+    print("1.Consultar directorio\n2.Añadir el telefono\n3.Eliminar el telefono\n0.Salir")
 def act():
     try:
-        archivo = open("directorio", "r")
+        archivo = open("directorio.txt", "r")
         lista = archivo.readlines()
-        list = [str(x)+ ". " + lista[x] + "\n" for x in range( len( lista) ) ]
+        list = [lista[x] for x in range( len( lista) ) ]
         archivo.close()
     except FileNotFoundError:
-        print("error")
+        archivo = open("directorio.txt", "w")
+        archivo.close()
+        return
     return list
 act()
-while opc.upper() != "S":
+while opc1.upper() != "0":
     os.system("clear")
     menu()
     opc1 = input()
     if opc1 == "1":
         act()
         print("".join(act()) )
+        time.sleep(3)
     elif opc1 == "2":
         try:
-            archivo = open("directorio", "a")
-            nombre = input("ingrese el nombre")
-            numero = input("ingrese el numero")
-            archivo.write("\n"+ nombre + ", " + numero )
+            archivo = open("directorio.txt", "a")
+            nombre = input("ingrese el nombre: ")
+            numero = input("ingrese el numero: ")
+            archivo.write(nombre + ", " + numero+ "\n")
             archivo.close()
         except :
             print("error")
     elif opc1 == "3":
         try:
-            print("".join(act()))
             x = act()
-            archivo = open("directorio", "w")
-            numero = int(input("elige un elemento"))
-            x.pop(numero)
+            archivo = open("directorio.txt", "w")
+            for i in range(0, len(x)):
+                print(str(i) + " "+ x[i])
+            numero = int(input("elige un elemento: "))
+            x.remove(x[numero])
             archivo.write("".join(x))
             archivo.close()
         except:
             print("error")
-    opc = input("desea salir? ")
     
