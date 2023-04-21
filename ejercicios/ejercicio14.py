@@ -18,8 +18,10 @@ def create(param):
     "edad":param["edad"],
     "numDoc":param["numDoc"]})
 def edit(param, id):
-    empresas["Personas"][id - 1] = {
-        "id":empresas["Personas"][id - 1]["id"], 
+    objetivo = [x for x in range(len(empresas["Personas"])) if empresas["Personas"][x]["id"] == id]
+    print(objetivo[0])
+    empresas["Personas"][objetivo[0]] = {
+        "id":empresas["Personas"][objetivo[0]]["id"], 
         "nombre": param["nombre"], 
         "edad":param["edad"],
         "numDoc":param["numDoc"]
@@ -42,14 +44,18 @@ def form(cat,id=None):
         try:
             create({"nombre":nombre, "edad":edad, "numDoc":numdoc})
             print("***CREACION EXITOSA***")
+            time.sleep(3)
         except:
             print("error")
     elif cat == "editar":
         try:
             edit({"nombre":nombre, "edad":edad, "numDoc":numdoc}, id)
             print("***EDICION EXITOSA***")
+            time.sleep(6)
         except:
             print("error")
+            time.sleep(3)
+            
 
 opc = ""
 while opc != "0":
